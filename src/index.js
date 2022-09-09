@@ -16,10 +16,10 @@ function todoItem(Name, Status) {
     listItem.className = Status
 }
 
-function todoList(todos) {
-    while(let i = 0; i <= todos.length; i++;) {
-        todoItem(todos[i].name, todo[i].status);
-    }   
-}
+// function todoList(todos) {
+//     while(let i = 0, i <= todos.length, i++;) {
+//         todoItem(todos[i].name, todo[i].status);
+//     }   
+// }
 
 todoList(todos);
