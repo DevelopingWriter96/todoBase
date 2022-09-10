@@ -1,5 +1,6 @@
 const todoList = document.querySelector('.todoList');
 const clear = document.querySelector('.clear');
+const add = document.querySelector('.add')
 
 let todos = [
     {
@@ -70,6 +71,12 @@ function addItem(arr) {
     completeNumber(arr);
 
 }
+
+function addbuttonClick() {
+    addItem(todos);
+}
+
+add.addEventListener('click', addButtonClick)
 
 function changeTodo(message) {
     console.log(message);
