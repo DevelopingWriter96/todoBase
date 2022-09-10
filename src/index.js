@@ -76,7 +76,7 @@ function addbuttonClick() {
     addItem(todos);
 }
 
-add.addEventListener('click', addButtonClick)
+add.addEventListener('click', addbuttonClick)
 
 function changeTodo(message) {
     console.log(message);
