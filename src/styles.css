@@ -108,22 +108,28 @@ button {
 
 .todoList li span.editBtn {
   position: absolute;
-  right: -45px;
+  right: 45px;
   width: 45px;
   color: var(--main-white);
   text-align: center;
-  background: var(--yellow);
+  background: var(--main-blue);
 
   cursor: pointer;
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
 }
 
 .todoList li:hover span {
   right: 0;
 }
 
+.todoList li:hover span.editBtn {
+  position: absolute;
+  right: 45px;
+  width: 45px;
+}
+
 .wrapper .footer {
-  /*   width: 100%; */
+  width: 100%;
   display: flex;
   justify-content: space-between;
   margin-top: 20px;

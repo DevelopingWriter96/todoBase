@@ -1,4 +1,5 @@
 const todoList = document.querySelector('.todoList');
+const clear = document.querySelector('.clear');
 
 let todos = [
     {
@@ -18,13 +19,14 @@ function singleItem(item) {
         listItem.textContent = item.Name
         listItem.className = item.Status;
         listTrashIcon.className = "fa fa-trash"
+        listTrashSpan.addEventListener('click', deleteTodo)
         listTrashSpan.appendChild(listTrashIcon);
         if (item.Status == "") {
             let listEditSpan = document.createElement('span');
             listEditSpan.className = "editBtn"
             let listEditIcon = document.createElement('i');
             listEditIcon.className = "fa fa-edit"
-            listEditIcon.textContent = ""
+            listEditSpan.addEventListener('click', editTodo);
             listEditSpan.appendChild(listEditIcon);
             listItem.appendChild(listEditSpan);
         }
@@ -69,13 +71,25 @@ function addItem(arr) {
 
 }
 
+function editTodo() {
+    console.log("edit onClick working")
+}
+
+function deleteTodo() {
+    console.log("delete onClick working")
+}
+
 function removeComplete(list) {
     let completeItems = list.filter(todo => todo.Status == "done");
     console.log(completeItems);
+}
+
+function clearTodos() {
+    removeComplete(todos)
 }
 
 todoItems(todos);
 
 completeNumber(todos);
 
-removeComplete(todos);
+clear.addEventListener("click", clearTodos)
