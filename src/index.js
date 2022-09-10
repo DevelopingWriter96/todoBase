@@ -71,12 +71,20 @@ function addItem(arr) {
 
 }
 
+function changeTodo(message) {
+    console.log(message);
+}
+
 function editTodo() {
-    console.log("edit onClick working")
+    changeTodo("edit onClick working");
+}
+
+function removeTodo(message) {
+    console.log(message);
 }
 
 function deleteTodo() {
-    console.log("delete onClick working")
+    removeTodo("delete onClick working");
 }
 
 function removeComplete(list) {
