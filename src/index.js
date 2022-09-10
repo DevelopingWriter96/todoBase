@@ -11,18 +11,15 @@ let todos = [
     }
 ]
 
-function todoItems(list) {
-    // let todoList = document.getElementsByClassName("todoList");
-    console.log(list);
-    list.forEach(function(todo) {
-        let listItem = document.createElement('li');
+function singleItem(item) {
+    let listItem = document.createElement('li');
         let listTrashSpan = document.createElement('span');
         let listTrashIcon = document.createElement('i');
-        listItem.textContent = todo.Name
-        listItem.className = todo.Status;
+        listItem.textContent = item.Name
+        listItem.className = item.Status;
         listTrashIcon.className = "fa fa-trash"
         listTrashSpan.appendChild(listTrashIcon);
-        if (todo.Status == "") {
+        if (item.Status == "") {
             let listEditSpan = document.createElement('span');
             listEditSpan.className = "editBtn"
             let listEditIcon = document.createElement('i');
@@ -33,7 +30,18 @@ function todoItems(list) {
         }
         listItem.appendChild(listTrashSpan);
         todoList.appendChild(listItem);
-    })      
+} 
+
+function todoItems(list) {
+    // let todoList = document.getElementsByClassName("todoList");
+    console.log(list);
+    list.forEach(function(todo) {
+        singleItem(todo)
+    })
+    
+    let hasNodes = todoList.hasChildNodes();
+    
+    console.log(hasNodes);
 }
 
 function completeNumber(list) {
@@ -45,6 +53,20 @@ function completeNumber(list) {
         }
     });
     doneNum.textContent = "You have " + i + " pending tasks."
+}
+
+function addItem(arr) {
+    let input = document.getElementById('newTodo').value
+    let newItem = {
+        Name: input,
+        Status: ""
+    }
+    arr.push(newItem);
+
+    singleItem(newItem);
+
+    completeNumber(arr);
+
 }
 
 function removeComplete(list) {
