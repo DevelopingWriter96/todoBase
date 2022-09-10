@@ -30,6 +30,7 @@ function singleItem(item) {
             listEditSpan.addEventListener('click', editTodo);
             listEditSpan.appendChild(listEditIcon);
             listItem.appendChild(listEditSpan);
+            listItem.addEventListener('click', markOff)
         }
         listItem.appendChild(listTrashSpan);
         todoList.appendChild(listItem);
@@ -70,6 +71,14 @@ function addItem(arr) {
 
     completeNumber(arr);
 
+}
+
+function completeTodo(message) {
+    console.log(message);
+}
+
+function markOff(){
+    completeTodo("Mark off working")
 }
 
 function addbuttonClick() {
