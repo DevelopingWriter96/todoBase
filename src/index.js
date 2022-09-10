@@ -3,23 +3,23 @@ const todoList = document.querySelector('.todoList');
 let todos = [
     {
         Name:"Sample1",
-        Status:"Complete"
+        Status:"done"
     },
     {
         Name:"Sample2",
-        Status:"Incomplete"
+        Status:"not done"
     }
 ]
 
-function todoItem(Name, Status) {
-    let listItem = document.createElement('li');
-    listItem.className = Status
+function todoItems(list) {
+    let i = 0;
+    while (i > list.length, i++) {
+        let listItem = document.createElement('li');
+        listItem.textContent = list[i].Name;
+        listItem.className = list[i].Status;
+        todoList.appendChild(listItem);
+        console.log(listItem)
+    }
 }
 
-// function todoList(todos) {
-//     while(let i = 0, i <= todos.length, i++;) {
-//         todoItem(todos[i].name, todo[i].status);
-//     }   
-// }
-
-todoList(todos);
+todoItems(todos);
