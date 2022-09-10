@@ -4,49 +4,26 @@ const add = document.querySelector('.add')
 
 let todos = [
     {
-        Name:"Sample1",
+        Name:"User Can View Todos",
         Status:"done"
     },
     {
-        Name:"Sample2",
+        Name:"User Can Edit Todos",
         Status:""
-    }
+    },
+    {
+        Name:"User Can Edit Todos",
+        Status:""
+    },
+    {
+        Name:"User Can Delete Todos",
+        Status:""
+    },
+    {
+        Name:"User Can Delete Todos",
+        Status:""
+    },
 ]
-
-function singleItem(item) {
-    let listItem = document.createElement('li');
-        let listTrashSpan = document.createElement('span');
-        let listTrashIcon = document.createElement('i');
-        listItem.textContent = item.Name
-        listItem.className = item.Status;
-        listTrashIcon.className = "fa fa-trash"
-        listTrashSpan.addEventListener('click', deleteTodo)
-        listTrashSpan.appendChild(listTrashIcon);
-        if (item.Status == "") {
-            let listEditSpan = document.createElement('span');
-            listEditSpan.className = "editBtn"
-            let listEditIcon = document.createElement('i');
-            listEditIcon.className = "fa fa-edit"
-            listEditSpan.addEventListener('click', editTodo);
-            listEditSpan.appendChild(listEditIcon);
-            listItem.appendChild(listEditSpan);
-            listItem.addEventListener('click', markOff)
-        }
-        listItem.appendChild(listTrashSpan);
-        todoList.appendChild(listItem);
-} 
-
-function todoItems(list) {
-    // let todoList = document.getElementsByClassName("todoList");
-    console.log(list);
-    list.forEach(function(todo) {
-        singleItem(todo)
-    })
-    
-    let hasNodes = todoList.hasChildNodes();
-    
-    console.log(hasNodes);
-}
 
 function completeNumber(list) {
     const doneNum = document.querySelector('.doneNum')
@@ -57,6 +34,49 @@ function completeNumber(list) {
         }
     });
     doneNum.textContent = "You have " + i + " pending tasks."
+}
+
+function singleItem(item, todos) {
+    let listItem = document.createElement('li');
+        let listTrashSpan = document.createElement('span');
+        let listTrashIcon = document.createElement('i');
+        listItem.textContent = item.Name
+        listItem.className = item.Status;
+        listTrashIcon.className = "fa fa-trash"
+        listTrashSpan.addEventListener('click', deleteTodo)
+        listTrashSpan.appendChild(listTrashIcon);        
+            let listEditSpan = document.createElement('span');
+            listEditSpan.className = "editBtn"
+            let listEditIcon = document.createElement('i');
+            listEditIcon.className = "fa fa-edit"
+            listEditSpan.addEventListener('click', editTodo);
+            listEditSpan.appendChild(listEditIcon);
+            listItem.appendChild(listEditSpan);
+        listItem.addEventListener('click', () => {
+            listItem.classList.toggle('done');
+            if (item.Status == "") {
+                item.Status = "done"
+            } else {
+                item.Status = ""
+            }
+            completeNumber(todos);
+            console.log(todos);
+        })
+        listItem.appendChild(listTrashSpan);
+        todoList.appendChild(listItem);
+} 
+
+function todoItems(list) {
+    console.log(list);
+    list.forEach(function(todo) {
+        singleItem(todo, list)
+    })
+    
+    let hasNodes = todoList.hasChildNodes();
+    
+    console.log(hasNodes);
+
+    completeNumber(list);
 }
 
 function addItem(arr) {
@@ -71,14 +91,6 @@ function addItem(arr) {
 
     completeNumber(arr);
 
-}
-
-function completeTodo(message) {
-    console.log(message);
-}
-
-function markOff(){
-    completeTodo("Mark off working")
 }
 
 function addbuttonClick() {
@@ -113,7 +125,5 @@ function clearTodos() {
 }
 
 todoItems(todos);
-
-completeNumber(todos);
 
 clear.addEventListener("click", clearTodos)
