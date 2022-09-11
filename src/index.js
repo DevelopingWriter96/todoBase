@@ -21,7 +21,7 @@ let todos = [
     },
     {
         Name:"User Can Delete Todos",
-        Status:""
+        Status:"done"
     },
     {
         Name:"User Can view Uncompleted Todos",
@@ -96,7 +96,38 @@ function addItem(arr) {
     }
     arr.push(newItem);
 
-    singleItem(newItem);
+    let listItem = document.createElement('li');
+        let listTrashSpan = document.createElement('span');
+        let listTrashIcon = document.createElement('i');
+        listItem.textContent = newItem.Name
+        listItem.className = newItem.Status;
+        listTrashIcon.className = "fa fa-trash"
+        listTrashSpan.appendChild(listTrashIcon);  
+        listTrashSpan.addEventListener('click', (index) => {
+            todoList.removeChild(listItem)
+            console.log(todos);
+            todos.splice(index, 1);
+        })      
+            let listEditSpan = document.createElement('span');
+            listEditSpan.className = "editBtn"
+            let listEditIcon = document.createElement('i');
+            listEditIcon.className = "fa fa-edit"
+            listEditSpan.addEventListener('click', () => {
+            });
+            listEditSpan.appendChild(listEditIcon);
+            listItem.appendChild(listEditSpan);
+        listItem.addEventListener('click', () => {
+            listItem.classList.toggle('done');
+            if (newItem.Status == "") {
+                newItem.Status = "done"
+            } else {
+                newItem.Status = ""
+            }
+            completeNumber(todos);
+            console.log(todos);
+        })
+        listItem.appendChild(listTrashSpan);
+        todoList.appendChild(listItem);
 
     completeNumber(arr);
 
