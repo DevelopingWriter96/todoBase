@@ -49,9 +49,12 @@ function singleItem(item, todos) {
         listTrashIcon.className = "fa fa-trash"
         listTrashSpan.appendChild(listTrashIcon);  
         listTrashSpan.addEventListener('click', (index) => {
+            const doneNum = document.querySelector('.doneNum')
+            doneNum.textContent = "You have " + stillTodo + " pending tasks."
             todoList.removeChild(listItem)
             console.log(todos);
             todos.splice(index, 1);
+            completeNumber(todos);
         })      
             let listEditSpan = document.createElement('span');
             listEditSpan.className = "editBtn"
