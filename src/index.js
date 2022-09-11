@@ -12,7 +12,11 @@ let todos = [
         Status:""
     },
     {
-        Name:"User Can Edit Todos",
+        Name:"User Can Add Todos",
+        Status:"done"
+    },
+    {
+        Name:"User Can Clear Completed Todos",
         Status:""
     },
     {
@@ -20,8 +24,8 @@ let todos = [
         Status:""
     },
     {
-        Name:"User Can Delete Todos",
-        Status:""
+        Name:"User Can view Uncompleted Todos",
+        Status:"done"
     },
 ]
 
@@ -43,13 +47,15 @@ function singleItem(item, todos) {
         listItem.textContent = item.Name
         listItem.className = item.Status;
         listTrashIcon.className = "fa fa-trash"
-        listTrashSpan.addEventListener('click', deleteTodo)
-        listTrashSpan.appendChild(listTrashIcon);        
+        listTrashSpan.appendChild(listTrashIcon);  
+        listTrashSpan.addEventListener('click', () => {
+        })      
             let listEditSpan = document.createElement('span');
             listEditSpan.className = "editBtn"
             let listEditIcon = document.createElement('i');
             listEditIcon.className = "fa fa-edit"
-            listEditSpan.addEventListener('click', editTodo);
+            listEditSpan.addEventListener('click', () => {
+            });
             listEditSpan.appendChild(listEditIcon);
             listItem.appendChild(listEditSpan);
         listItem.addEventListener('click', () => {
@@ -91,6 +97,7 @@ function addItem(arr) {
 
     completeNumber(arr);
 
+    console.log(arr);
 }
 
 function addbuttonClick() {
@@ -98,22 +105,6 @@ function addbuttonClick() {
 }
 
 add.addEventListener('click', addbuttonClick)
-
-function changeTodo(message) {
-    console.log(message);
-}
-
-function editTodo() {
-    changeTodo("edit onClick working");
-}
-
-function removeTodo(message) {
-    console.log(message);
-}
-
-function deleteTodo() {
-    removeTodo("delete onClick working");
-}
 
 function removeComplete(list) {
     let completeItems = list.filter(todo => todo.Status == "done");
