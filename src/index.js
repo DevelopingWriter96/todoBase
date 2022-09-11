@@ -67,7 +67,9 @@ function singleItem(item, todos) {
                 todoList.removeChild(listItem)
                 console.log(todos);
                 todos.splice(index, 1);
+                todos.push(editedTodo);
                 singleItem(editedTodo, todos);
+                completeNumber(todos)
             });
             listEditSpan.appendChild(listEditIcon);
             listItem.appendChild(listEditSpan);
@@ -129,7 +131,18 @@ function addItem(arr) {
             listEditSpan.className = "editBtn"
             let listEditIcon = document.createElement('i');
             listEditIcon.className = "fa fa-edit"
-            listEditSpan.addEventListener('click', () => {
+            listEditSpan.addEventListener('click', (index) => {
+                let editInput = prompt('What is the new name?')
+                let editedTodo = {
+                    Name: editInput,
+                    Status: ""
+                 }
+                todoList.removeChild(listItem)
+                console.log(todos);
+                todos.splice(index, 1);
+                todos.push(editedTodo);
+                singleItem(editedTodo, todos);
+                completeNumber(todos)
             });
             listEditSpan.appendChild(listEditIcon);
             listItem.appendChild(listEditSpan);
