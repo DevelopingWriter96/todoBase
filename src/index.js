@@ -78,8 +78,7 @@ function singleItem(item, todos) {
         if (item.Status == "done") {
             todoList.removeChild(listItem)
             console.log(todos);
-            todos.splice(index, 1);
-            
+            todos.splice(index, 1); 
         }
     })
 } 
