@@ -48,7 +48,10 @@ function singleItem(item, todos) {
         listItem.className = item.Status;
         listTrashIcon.className = "fa fa-trash"
         listTrashSpan.appendChild(listTrashIcon);  
-        listTrashSpan.addEventListener('click', () => {
+        listTrashSpan.addEventListener('click', (index) => {
+            todoList.removeChild(listItem)
+            console.log(todos);
+            todos.splice(index, 1);
         })      
             let listEditSpan = document.createElement('span');
             listEditSpan.className = "editBtn"
