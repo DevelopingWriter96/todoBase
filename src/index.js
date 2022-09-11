@@ -58,7 +58,16 @@ function singleItem(item, todos) {
             listEditSpan.className = "editBtn"
             let listEditIcon = document.createElement('i');
             listEditIcon.className = "fa fa-edit"
-            listEditSpan.addEventListener('click', () => {
+            listEditSpan.addEventListener('click', (index) => {
+                let editInput = prompt('What is the new name?')
+                let editedTodo = {
+                    Name: editInput,
+                    Status: ""
+                 }
+                todoList.removeChild(listItem)
+                console.log(todos);
+                todos.splice(index, 1);
+                singleItem(editedTodo, todos);
             });
             listEditSpan.appendChild(listEditIcon);
             listItem.appendChild(listEditSpan);
