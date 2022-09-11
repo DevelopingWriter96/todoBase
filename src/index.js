@@ -146,8 +146,17 @@ function addItem(arr) {
             });
             listEditSpan.appendChild(listEditIcon);
             listItem.appendChild(listEditSpan);
+            listItem.addEventListener('click', () => {
+                listItem.classList.toggle('done');
+                if (listItem.Status == "") {
+                    listItem.Status = "done"
+                } else {
+                    listItem.Status = ""
+                }
+                completeNumber(todos);
+                console.log(todos);
+            })
         listItem.addEventListener('click', () => {
-            listItem.classList.toggle('done');
             if (newItem.Status == "") {
                 newItem.Status = "done"
             } else {
