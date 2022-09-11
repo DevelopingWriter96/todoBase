@@ -17,7 +17,7 @@ let todos = [
     },
     {
         Name:"User Can Clear Completed Todos",
-        Status:""
+        Status:"done"
     },
     {
         Name:"User Can Delete Todos",
