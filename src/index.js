@@ -74,6 +74,14 @@ function singleItem(item, todos) {
         })
         listItem.appendChild(listTrashSpan);
         todoList.appendChild(listItem);
+    clear.addEventListener('click', (index) => {
+        if (item.Status == "done") {
+            todoList.removeChild(listItem)
+            console.log(todos);
+            todos.splice(index, 1);
+            
+        }
+    })
 } 
 
 function todoItems(list) {
@@ -141,15 +149,4 @@ function addbuttonClick() {
 
 add.addEventListener('click', addbuttonClick)
 
-function removeComplete(list) {
-    let completeItems = list.filter(todo => todo.Status == "done");
-    console.log(completeItems);
-}
-
-function clearTodos() {
-    removeComplete(todos)
-}
-
 todoItems(todos);
-
-clear.addEventListener("click", clearTodos)
