@@ -6,7 +6,7 @@ const drop = document.querySelector('.dropdown');
 let todos = [
     {
         Name:"View todos by category",
-        Category: "Viewing",
+        Category: "Deleting",
         Status:""
     },
     {
@@ -16,12 +16,12 @@ let todos = [
     },
     {
         Name:"Select a category",
-        Category: "Selecting",
+        Category: "Editing",
         Status:""
     },
     {
         Name:"Delete categories",
-        Category: "Deleting",
+        Category: "Adding",
         Status:""
     },
     {
@@ -31,7 +31,7 @@ let todos = [
     },
     {
         Name:"Good user experience",
-        Category: "Viewing",
+        Category: "Deleting",
         Status:""
     },
 ]
@@ -56,7 +56,11 @@ function categoryDropdown(todosCategory) {
     todosCategory.forEach(category => {
         let listCategory = document.createElement('option');
         listCategory.textContent = category;
+        listCategory.value = category;
         drop.appendChild(listCategory);
+        listCategory.onclick = function sortTodos(category) {
+            console.log("Testing");
+        }
     })
     let addItem = document.createElement('option');
     addItem.textContent = "Add a Category"
