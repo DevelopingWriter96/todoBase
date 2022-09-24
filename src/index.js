@@ -51,26 +51,27 @@ getCategories(todos);
 
 function categoryDropdown(todosCategory) {
     let defaultItem = document.createElement('option');
-    defaultItem.textContent = "Choose One"
+    defaultItem.textContent = "Choose One";
     drop.appendChild(defaultItem); 
+    defaultItem.value = "Choose One";
     todosCategory.forEach(category => {
         let listCategory = document.createElement('option');
         listCategory.textContent = category;
         listCategory.value = category;
         drop.appendChild(listCategory);
-        listCategory.onclick = function sortTodos(category) {
-            console.log("Testing");
-        }
     })
     let addItem = document.createElement('option');
-    addItem.textContent = "Add a Category"
+    addItem.textContent = "Add a Category";
     drop.appendChild(addItem);
+    addItem.value = "Add a Category";
     let editItem = document.createElement('option');
-    editItem.textContent = "Edit a Category"
+    editItem.textContent = "Edit a Category";
     drop.appendChild(editItem);
+    editItem.value = "Edit a Category";
     let removeItem = document.createElement('option');
     removeItem.textContent = "Delete a Category"
     drop.appendChild(removeItem);
+    removeItem.value = "Delete a Category";
 }
 
 categoryDropdown(todosCategory);
