@@ -4,30 +4,47 @@ const add = document.querySelector('.add')
 
 let todos = [
     {
-        Name:"User Can View Todos",
-        Status:"done"
-    },
-    {
-        Name:"User Can Edit Todos",
+        Name:"View todos by category",
+        Category: "Viewing",
         Status:""
     },
     {
-        Name:"User Can Add Todos",
-        Status:"done"
+        Name:"Add categories",
+        Category: "Adding",
+        Status:""
     },
     {
-        Name:"User Can Clear Completed Todos",
-        Status:"done"
+        Name:"Select a category",
+        Category: "Selecting",
+        Status:""
     },
     {
-        Name:"User Can Delete Todos",
-        Status:"done"
+        Name:"Delete categories",
+        Category: "Deleting",
+        Status:""
     },
     {
-        Name:"User Can view Uncompleted Todos",
-        Status:"done"
+        Name:"Edit categories",
+        Category: "Editing",
+        Status:""
+    },
+    {
+        Name:"Good user experience",
+        Category: "Viewing",
+        Status:""
     },
 ]
+
+function getCategories(todos) {
+    let todosCategory = [];
+    todos.forEach(todo => {
+        let cat = todo.Category;
+        todosCategory.push(cat);
+    })
+    console.log(todosCategory);
+}
+
+getCategories(todos);
 
 function completeNumber(list) {
     const doneNum = document.querySelector('.doneNum')
@@ -111,6 +128,7 @@ function addItem(arr) {
     let input = document.getElementById('newTodo').value
     let newItem = {
         Name: input,
+        category: categoryInput,
         Status: ""
     }
     arr.push(newItem);
