@@ -1,6 +1,7 @@
 const todoList = document.querySelector('.todoList');
 const clear = document.querySelector('.clear');
 const add = document.querySelector('.add')
+const drop = document.querySelector('.dropdown');
 
 let todos = [
     {
@@ -35,16 +36,40 @@ let todos = [
     },
 ]
 
+let todosCategory = [];
+
 function getCategories(todos) {
-    let todosCategory = [];
     todos.forEach(todo => {
         let cat = todo.Category;
-        todosCategory.push(cat);
+        if (todosCategory.includes(cat) == false) {
+            todosCategory.push(cat);
+        }
     })
-    console.log(todosCategory);
 }
 
 getCategories(todos);
+
+function categoryDropdown(todosCategory) {
+    let defaultItem = document.createElement('option');
+    defaultItem.textContent = "Choose One"
+    drop.appendChild(defaultItem); 
+    todosCategory.forEach(category => {
+        let listCategory = document.createElement('option');
+        listCategory.textContent = category;
+        drop.appendChild(listCategory);
+    })
+    let addItem = document.createElement('option');
+    addItem.textContent = "Add a Category"
+    drop.appendChild(addItem);
+    let editItem = document.createElement('option');
+    editItem.textContent = "Edit a Category"
+    drop.appendChild(editItem);
+    let removeItem = document.createElement('option');
+    removeItem.textContent = "Delete a Category"
+    drop.appendChild(removeItem);
+}
+
+categoryDropdown(todosCategory);
 
 function completeNumber(list) {
     const doneNum = document.querySelector('.doneNum')
