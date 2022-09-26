@@ -11,7 +11,7 @@ let todos = [
     },
     {
         Name:"Add categories",
-        Category: "Adding",
+        Category: "Random",
         Status:""
     },
     {
@@ -72,6 +72,7 @@ function categoryDropdown(todosCategory) {
     removeItem.textContent = "Delete a Category"
     drop.appendChild(removeItem);
     removeItem.value = "Delete a Category";
+
 }
 
 categoryDropdown(todosCategory);
@@ -226,5 +227,42 @@ function addbuttonClick() {
 }
 
 add.addEventListener('click', addbuttonClick)
+
+function addCat() {
+    console.log("Adding a Category");
+}
+
+function editCat() {
+    console.log("Editing a Category");
+}
+
+function deleteCat() {
+    console.log("Deleting a Category");
+}
+
+function sortCat(todos) {
+    //let sortedArray = [];
+    console.log(drop.value);
+}
+
+drop.addEventListener('change', () => {
+    switch(drop.value) {
+        case "Choose One":
+            console.log("Please choose something")
+            break;
+        case "Add a Category":
+            addCat();
+            break;
+        case "Edit a Category":
+            editCat();
+            break;
+        case "Delete a Category":
+            deleteCat();
+            break;
+        default:
+            sortCat(todos);
+    }
+    
+})
 
 todoItems(todos);
