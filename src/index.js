@@ -62,9 +62,9 @@ function categoryDropdown(todosCategory) {
         drop.appendChild(listCategory);
     })
     let addItem = document.createElement('option');
-    addItem.textContent = "Add a Category";
+    addItem.textContent = "New Category";
     drop.appendChild(addItem);
-    addItem.value = "Add a Category";
+    addItem.value = "New Category";
 
 }
 

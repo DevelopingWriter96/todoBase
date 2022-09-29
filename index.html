@@ -16,7 +16,7 @@
         <input type="text" placeholder="Enter new task" id="newTodo"/>
         <button class = "add"><i class="fas fa-plus"></i></button>
       </div>
-      <label>What will be the new category?</label>
+      <label>What will be the new item's category?</label>
       <select class="dropdown" id="drop2">
         <option>Choose one</option>
         <!--<option>Add a Category</option>
@@ -33,12 +33,7 @@
       </select>
     <br/>
       <label>What do you want to do with it?</label>
-      <select class="dropdown" id="drop3">
-        <option value="Choose One">Choose one</option>
-        <option value="Sort by the Category">Sort by the Category</option>
-        <option value="Edit a Category">Edit a Category</option>
-        <option value="Delete a Category">Delete a Category</option>
-      </select>
+      <div><button  class="sortcat">Sort by Category</button><button class="editcat">Edit Category</button><button class="deletecat">Delete Category</button></div>
       <ul class="todoList">
         <!-- <li class="done">
           Todo Item 1 (Done example)<span> <i class="fa fa-trash"></i></span>
