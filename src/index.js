@@ -1,7 +1,8 @@
 const todoList = document.querySelector('.todoList');
 const clear = document.querySelector('.clear');
 const add = document.querySelector('.add')
-const drop = document.querySelector('.dropdown');
+const drop = document.querySelector('#drop1');
+const drop2 = document.querySelector('#drop2');
 
 let todos = [
     {
@@ -64,14 +65,6 @@ function categoryDropdown(todosCategory) {
     addItem.textContent = "Add a Category";
     drop.appendChild(addItem);
     addItem.value = "Add a Category";
-    let editItem = document.createElement('option');
-    editItem.textContent = "Edit a Category";
-    drop.appendChild(editItem);
-    editItem.value = "Edit a Category";
-    let removeItem = document.createElement('option');
-    removeItem.textContent = "Delete a Category"
-    drop.appendChild(removeItem);
-    removeItem.value = "Delete a Category";
 
 }
 
@@ -229,7 +222,8 @@ function addbuttonClick() {
 add.addEventListener('click', addbuttonClick)
 
 function addCat() {
-    console.log("Adding a Category");
+    let newCat = prompt('what is the new category?')
+    
 }
 
 function editCat() {
@@ -241,14 +235,16 @@ function deleteCat() {
 }
 
 function sortCat(todos) {
-    //let sortedArray = [];
+    let sortedArray = [];
     console.log(drop.value);
+    todos.forEach 
+    
 }
 
 drop.addEventListener('change', () => {
     switch(drop.value) {
         case "Choose One":
-            console.log("Please choose something")
+            console.log("Please choose something");
             break;
         case "Add a Category":
             addCat();

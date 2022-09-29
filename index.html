@@ -16,11 +16,28 @@
         <input type="text" placeholder="Enter new task" id="newTodo"/>
         <button class = "add"><i class="fas fa-plus"></i></button>
       </div>
-      <select class="dropdown">
+      <label>What will be the new category?</label>
+      <select class="dropdown" id="drop2">
+        <option>Choose one</option>
+        <!--<option>Add a Category</option>
+        <option>Edit a Category</option>
+        <option>Delete a Category</option> -->
+      </select>
+      <br/>
+      <label>Which Category do you want?</label>
+      <select class="dropdown" id="drop1">
         <!-- <option>Choose one</option>
         <option>Add a Category</option>
         <option>Edit a Category</option>
         <option>Delete a Category</option> -->
+      </select>
+    <br/>
+      <label>What do you want to do with it?</label>
+      <select class="dropdown" id="drop3">
+        <option value="Choose One">Choose one</option>
+        <option value="Sort by the Category">Sort by the Category</option>
+        <option value="Edit a Category">Edit a Category</option>
+        <option value="Delete a Category">Delete a Category</option>
       </select>
       <ul class="todoList">
         <!-- <li class="done">
