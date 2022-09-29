@@ -152,7 +152,7 @@ function addItem(arr) {
     let input = document.getElementById('newTodo').value
     let newItem = {
         Name: input,
-        //category: categoryInput,
+        category: drop.value,
         Status: ""
     }
     arr.push(newItem);
