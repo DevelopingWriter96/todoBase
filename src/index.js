@@ -3,6 +3,7 @@ const clear = document.querySelector('.clear');
 const add = document.querySelector('.add')
 const drop = document.querySelector('#drop1');
 const drop2 = document.querySelector('#drop2');
+const addcat = document.querySelector('.addcat');
 
 let todos = [
     {
@@ -13,7 +14,7 @@ let todos = [
     {
         Name:"Add categories",
         Category: "Random",
-        Status:""
+        Status:"done"
     },
     {
         Name:"Select a category",
@@ -50,22 +51,21 @@ function getCategories(todos) {
 
 getCategories(todos);
 
+function singleCat(todoCat) {
+    let listCategory = document.createElement('option');
+    listCategory.textContent = todoCat;
+    listCategory.value = todoCat;
+    drop.appendChild(listCategory);
+}
+
 function categoryDropdown(todosCategory) {
     let defaultItem = document.createElement('option');
     defaultItem.textContent = "Choose One";
     drop.appendChild(defaultItem); 
     defaultItem.value = "Choose One";
     todosCategory.forEach(category => {
-        let listCategory = document.createElement('option');
-        listCategory.textContent = category;
-        listCategory.value = category;
-        drop.appendChild(listCategory);
+        singleCat(category)
     })
-    let addItem = document.createElement('option');
-    addItem.textContent = "New Category";
-    drop.appendChild(addItem);
-    addItem.value = "New Category";
-
 }
 
 categoryDropdown(todosCategory);
@@ -152,7 +152,7 @@ function addItem(arr) {
     let input = document.getElementById('newTodo').value
     let newItem = {
         Name: input,
-        category: categoryInput,
+        //category: categoryInput,
         Status: ""
     }
     arr.push(newItem);
@@ -221,10 +221,11 @@ function addbuttonClick() {
 
 add.addEventListener('click', addbuttonClick)
 
-function addCat() {
-    let newCat = prompt('what is the new category?')
-    
-}
+addcat.addEventListener('click', () => {
+    let newCat = prompt('What is the new Category?')
+    todosCategory.push(newCat);
+    singleCat(newCat);
+})
 
 function editCat() {
     console.log("Editing a Category");
@@ -237,9 +238,11 @@ function deleteCat() {
 function sortCat(todos) {
     let sortedArray = [];
     console.log(drop.value);
-    todos.forEach 
+    // todos.forEach 
     
 }
+
+
 
 drop.addEventListener('change', () => {
     switch(drop.value) {
