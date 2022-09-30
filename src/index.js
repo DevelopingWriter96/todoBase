@@ -12,7 +12,7 @@ let todos = [
     {
         Name:"View todos by category",
         Category: "Deleting",
-        Status:""
+        Status:"done"
     },
     {
         Name:"Add categories",
@@ -287,9 +287,11 @@ sortcat.addEventListener('click', () => {
         if (todo.Category === drop.value){
             sortedArray.push(todo);
         }
-
     })
     console.log(sortedArray);
+    todoList.innerHTML =
+        null;
+    todoItems(sortedArray);
 }
 })
 
