@@ -27,7 +27,7 @@ let todos = [
     {
         Name:"Delete categories",
         Category: "Adding",
-        Status:""
+        Status:"done"
     },
     {
         Name:"Edit categories",
@@ -37,7 +37,7 @@ let todos = [
     {
         Name:"Good user experience",
         Category: "Deleting",
-        Status:""
+        Status:"done"
     },
 ]
 
@@ -58,6 +58,7 @@ function singleCat(todoCat) {
     let listCategory = document.createElement('option');
     listCategory.textContent = todoCat;
     listCategory.value = todoCat;
+    listCategory.className = todoCat;
     drop.appendChild(listCategory);
 }
 
@@ -132,8 +133,8 @@ function singleItem(item, todos) {
     clear.addEventListener('click', (index) => {
         if (item.Status == "done") {
             todoList.removeChild(listItem)
-            console.log(todos);
-            todos.splice(index, 1); 
+            todos.splice(index, 1);
+            console.log(todos); 
         }
     })
 } 
@@ -245,6 +246,11 @@ editcat.addEventListener('click', (index) => {
         todos.forEach(todo => {
            if (todo.Category === drop.value){
                 todo.Category = editedCat;
+                console.log(todosCategory);
+                todosCategory[todosCategory.indexOf(drop.value)] = editedCat; 
+                drop.innerHTML =
+                    null;
+                categoryDropdown(todosCategory);
             }
         }) 
     }
@@ -258,9 +264,15 @@ deletecat.addEventListener('click', (index) => {
     }  else {
         todos.forEach(todo => {
            if (todo.Category === drop.value){
+                console.log();
                 todo.Category = "";
+                todosCategory.splice(todosCategory.indexOf(drop.value), 1);
+                console.log(todosCategory);
+                drop.innerHTML =
+                    null;
+                categoryDropdown(todosCategory);
             }
-        }) 
+        })
     }
     console.log(todos);
 })
