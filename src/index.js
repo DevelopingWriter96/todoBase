@@ -248,11 +248,11 @@ editcat.addEventListener('click', (index) => {
                 todo.Category = editedCat;
                 console.log(todosCategory);
                 todosCategory[todosCategory.indexOf(drop.value)] = editedCat; 
-                drop.innerHTML =
-                    null;
-                categoryDropdown(todosCategory);
             }
-        }) 
+        })
+        drop.innerHTML =
+            null;
+        categoryDropdown(todosCategory); 
     }
     console.log(todos);
 })
@@ -262,18 +262,17 @@ deletecat.addEventListener('click', (index) => {
         alert("Please choose a category")
         return;
     }  else {
+        console.log(drop.value);
         todos.forEach(todo => {
-           if (todo.Category === drop.value){
-                console.log();
+           if (todo.Category === drop.value) {  
                 todo.Category = "";
-                todosCategory.splice(todosCategory.indexOf(drop.value), 1);
-                console.log(todosCategory);
-                drop.innerHTML =
-                    null;
-                categoryDropdown(todosCategory);
-            }
+           }
         })
+        todosCategory.splice(todosCategory.indexOf(drop.value), 1)
     }
+    drop.innerHTML =
+        null;
+    categoryDropdown(todosCategory);
     console.log(todos);
 })
 
