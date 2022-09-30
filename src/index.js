@@ -4,6 +4,9 @@ const add = document.querySelector('.add')
 const drop = document.querySelector('#drop1');
 const drop2 = document.querySelector('#drop2');
 const addcat = document.querySelector('.addcat');
+const deletecat = document.querySelector('.deletecat');
+const editcat = document.querySelector('.editcat');
+const sortcat = document.querySelector('.sortcat');
 
 let todos = [
     {
@@ -19,7 +22,7 @@ let todos = [
     {
         Name:"Select a category",
         Category: "Editing",
-        Status:""
+        Status:"done"
     },
     {
         Name:"Delete categories",
@@ -150,10 +153,16 @@ function todoItems(list) {
 
 function addItem(arr) {
     let input = document.getElementById('newTodo').value
-    let newItem = {
-        Name: input,
-        category: drop.value,
-        Status: ""
+    let newItem = {};
+    if (drop.value === "Choose One") {
+        alert("Please choose a category")
+        return;
+    }  else {  
+        newItem = {
+            Name: input,
+            category: drop.value,
+            Status: ""
+        }
     }
     arr.push(newItem);
 
@@ -227,41 +236,49 @@ addcat.addEventListener('click', () => {
     singleCat(newCat);
 })
 
-function editCat() {
-    console.log("Editing a Category");
-}
-
-function deleteCat() {
-    console.log("Deleting a Category");
-}
-
-function sortCat(todos) {
-    let sortedArray = [];
-    console.log(drop.value);
-    // todos.forEach 
-    
-}
-
-
-
-drop.addEventListener('change', () => {
-    switch(drop.value) {
-        case "Choose One":
-            console.log("Please choose something");
-            break;
-        case "Add a Category":
-            addCat();
-            break;
-        case "Edit a Category":
-            editCat();
-            break;
-        case "Delete a Category":
-            deleteCat();
-            break;
-        default:
-            sortCat(todos);
+editcat.addEventListener('click', (index) => {
+    if (drop.value === "Choose One") {
+        alert("Please choose a category")
+        return;
+    }  else {
+        let editedCat = prompt('What will the new Category be?')
+        todos.forEach(todo => {
+           if (todo.Category === drop.value){
+                todo.Category = editedCat;
+            }
+        }) 
     }
-    
+    console.log(todos);
+})
+
+deletecat.addEventListener('click', (index) => {
+    if (drop.value === "Choose One") {
+        alert("Please choose a category")
+        return;
+    }  else {
+        todos.forEach(todo => {
+           if (todo.Category === drop.value){
+                todo.Category = "";
+            }
+        }) 
+    }
+    console.log(todos);
+})
+
+sortcat.addEventListener('click', () => {
+    let sortedArray = [];
+    if (drop.value === "Choose One") {
+        alert("Please choose a category")
+        return;
+    }  else {
+    todos.forEach(todo => {
+        if (todo.Category === drop.value){
+            sortedArray.push(todo);
+        }
+
+    })
+    console.log(sortedArray);
+}
 })
 
 todoItems(todos);
