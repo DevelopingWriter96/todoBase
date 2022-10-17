@@ -8,40 +8,47 @@ const deletecat = document.querySelector('.deletecat');
 const editcat = document.querySelector('.editcat');
 const sortcat = document.querySelector('.sortcat');
 
-let todos = [
-    {
-        Name:"View todos by category",
-        Category: "Deleting",
-        Status:"done"
-    },
-    {
-        Name:"Add categories",
-        Category: "Random",
-        Status:"done"
-    },
-    {
-        Name:"Select a category",
-        Category: "Editing",
-        Status:"done"
-    },
-    {
-        Name:"Delete categories",
-        Category: "Adding",
-        Status:""
-    },
-    {
-        Name:"Edit categories",
-        Category: "Editing",
-        Status:""
-    },
-    {
-        Name:"Good user experience",
-        Category: "Deleting",
-        Status:"done"
-    },
-]
+// let todos = [
+//     {
+//         Name:"View todos by category",
+//         Category: "Deleting",
+//         Status:"done"
+//     },
+//     {
+//         Name:"Add categories",
+//         Category: "Random",
+//         Status:"done"
+//     },
+//     {
+//         Name:"Select a category",
+//         Category: "Editing",
+//         Status:"done"
+//     },
+//     {
+//         Name:"Delete categories",
+//         Category: "Adding",
+//         Status:""
+//     },
+//     {
+//         Name:"Edit categories",
+//         Category: "Editing",
+//         Status:""
+//     },
+//     {
+//         Name:"Good user experience",
+//         Category: "Deleting",
+//         Status:"done"
+//     },
+// ]
 
-let todosCategory = [];
+// let todosCategory = [];
+
+async function getTodos() {
+    let response = await fetch('/todos');
+    let data = await response.json()
+
+    return data;
+}
 
 function getCategories(todos) {
     todos.forEach(todo => {
@@ -295,3 +302,17 @@ sortcat.addEventListener('click', () => {
 })
 
 todoItems(todos);
+
+getTodos().then(todos =>{
+    renderTodos(todos)
+})
+
+// fetch('/todo', {
+//     method: 'POST',
+//     body: JSON.stringify({todo: 'new todo'}),
+//     headers: {
+//         'Content-Type': 'application/json'
+//     }
+// })
+//     .then(res => json())
+//     .then(data => console.log(data)) 
