@@ -21,7 +21,7 @@ let todos = [
         Status:"done"
     },
     {   
-        todo:"Delete categories",
+        Name:"Delete",
         Category: "Adding",
         Status:""
     },

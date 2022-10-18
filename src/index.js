@@ -59,7 +59,7 @@ function getCategories(todos) {
     })
 }
 
-getCategories(todos);
+//getCategories(todos);
 
 function singleCat(todoCat) {
     let listCategory = document.createElement('option');
@@ -79,7 +79,7 @@ function categoryDropdown(todosCategory) {
     })
 }
 
-categoryDropdown(todosCategory);
+//categoryDropdown(todosCategory);
 
 function completeNumber(list) {
     const doneNum = document.querySelector('.doneNum')
@@ -301,10 +301,11 @@ sortcat.addEventListener('click', () => {
 }
 })
 
-todoItems(todos);
+// todoItems(data);
 
 getTodos().then(todos =>{
-    renderTodos(todos)
+    todoItems(todos)
+    
 })
 
 // fetch('/todo', {
