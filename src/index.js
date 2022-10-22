@@ -311,34 +311,69 @@ sortcat.addEventListener('click', () => {
 // todoItems(data);
 
 getTodos().then(todos =>{
+    //console.log(todos)
     todoItems(todos)
     
 })
 
 getCategories().then(categories =>{
+    console.log(categories)
     categoryDropdown(categories)
     
 })
 
-fetch('/todos', {
-    method: 'POST',
-    body: JSON.stringify({ Name: 'new todo' }),
-    headers: {
-        'Content-Type': 'application/json',
-    }
-})
-    .then(res => res.json())
-    .then(data => {
-        console.log(data);
+//function postTodos() {
+    fetch('/todos', {
+        method: 'POST',
+        body: JSON.stringify({ name: 'new todo' }),
+        headers: {
+            'Content-Type': 'application/json',
+        }
     })
-    
-fetch('/category', {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json',
-    }
-})
-    .then(res => res.json())
-    .then(data => {
-        console.log(data);
-    }) 
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+        })
+//}
+
+//function postCategory() {
+    fetch('/category', {
+        method: 'POST',
+        body: JSON.stringify({ Category: 'new cat' }),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        })
+//}
+
+// function deleteTodo {
+//     fetch(`/todos/${1}`, {
+//         method: 'DELETE',
+//         body: JSON.stringify({ index: 1 }),
+//         headers: {
+//             'Content-Type': 'application/json',
+//         }
+//     })
+//         .then(res => res.json())
+//         .then(data => {
+//             console.log(data);
+//         })
+// }
+
+// function deleteCategory {
+//     fetch('/category', {
+//         method: 'DELETE',
+//         body: JSON.stringify({ index: 1 }),
+//         headers: {
+//             'Content-Type': 'application/json',
+//         }
+//     })
+//         .then(res => res.json())
+//         .then(data => {
+//             console.log(data);
+//         })
+// }

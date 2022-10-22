@@ -6,38 +6,44 @@ const path = require('path');
 const port = 8000
 
 app.use(express.static('client'))
-app.use( bodyParser.json() )
-app.use(bodyParser.urlencoded({
-    extended: true
-}))
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
 
 let todos = [
-    {
+    {   
+        id: 1,
         Name:"View todos by category",
         Category: "Deleting",
         Status:"done"
     },
     {   
+        id: 2,
         Name:"Add categories",
         Category: "Random",
         Status:"done"
     },
     {   
+        id: 3,
         Name:"Select a category",
         Category: "Editing",
         Status:"done"
     },
     {   
+        id: 4,
         Name:"Delete categories",
         Category: "Adding",
         Status:""
     },
     {   
+        id: 5,
         Name:"Edit categories",
         Category: "Editing",
         Status:""
     },
     {   
+        id: 6,
         Name:"Good user experience",
         Category: "Deleting",
         Status:"done"
@@ -60,9 +66,10 @@ app.get('/todos', (req, res) => {
 app.post('/todos', (req, res) => {
     console.log(req);
     todos.push({
-        Name:req.query.Name,
-        Category: "",
-        Status:""
+        id: todos.length + 1,
+        Name:req.body.name,
+        Category: "none",
+        Status: ""
     })
     res.send(todos)
 })
@@ -70,7 +77,7 @@ app.post('/todos', (req, res) => {
 app.put('/todos', (req, res) => {
     let editedTodo = {
          Name: req.query.Name,
-         Category: "",
+         Category: "none",
          Status: ""
       }
     todos.splice(req.query.index, 1, editedTodo);
@@ -98,7 +105,7 @@ app.get('/category', (req, res) => {
 
 app.post('/category', (req, res) => {
     console.log(req)
-    categories.push(req.query.Category)
+    categories.push(req.body.Category)
     res.send(categories)
 })
 
