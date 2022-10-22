@@ -322,7 +322,7 @@ getCategories().then(categories =>{
     
 })
 
-//function postTodos() {
+function postTodos() {
     fetch('/todos', {
         method: 'POST',
         body: JSON.stringify({ name: 'new todo' }),
@@ -334,9 +334,9 @@ getCategories().then(categories =>{
         .then(data => {
             console.log(data)
         })
-//}
+}
 
-//function postCategory() {
+function postCategory() {
     fetch('/category', {
         method: 'POST',
         body: JSON.stringify({ Category: 'new cat' }),
@@ -348,32 +348,32 @@ getCategories().then(categories =>{
         .then(data => {
             console.log(data);
         })
+}
+
+//function deleteTodo {
+    fetch('/todos', {
+        method: 'DELETE',
+        body: JSON.stringify({ index: 1 }),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        })
 //}
 
-// function deleteTodo {
-//     fetch(`/todos/${1}`, {
-//         method: 'DELETE',
-//         body: JSON.stringify({ index: 1 }),
-//         headers: {
-//             'Content-Type': 'application/json',
-//         }
-//     })
-//         .then(res => res.json())
-//         .then(data => {
-//             console.log(data);
-//         })
-// }
-
 // function deleteCategory {
-//     fetch('/category', {
-//         method: 'DELETE',
-//         body: JSON.stringify({ index: 1 }),
-//         headers: {
-//             'Content-Type': 'application/json',
-//         }
-//     })
-//         .then(res => res.json())
-//         .then(data => {
-//             console.log(data);
-//         })
+    fetch('/category', {
+        method: 'DELETE',
+        body: JSON.stringify({ index: 1 }),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        })
 // }

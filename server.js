@@ -85,7 +85,7 @@ app.put('/todos', (req, res) => {
 })
 
 app.delete('/todos', (req, res) =>{
-    todos.splice(req.query.index, 1);
+    todos.splice(req.body.index, 1);
     res.send(todos)
 })
 
@@ -116,7 +116,7 @@ app.put('/category', (req, res) => {
 })
 
 app.delete('/category', (req, res) => {
-    categories.splice(req.query.index, 1);
+    categories.splice(req.body.index, 1);
     res.send(categories)
 })
 
