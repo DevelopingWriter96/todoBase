@@ -315,6 +315,11 @@ getTodos().then(todos =>{
     
 })
 
+getCategories().then(categories =>{
+    categoryDropdown(categories)
+    
+})
+
 fetch('/todos', {
     method: 'POST',
     body: JSON.stringify({ Name: 'new todo' }),
