@@ -50,14 +50,21 @@ async function getTodos() {
     return data;
 }
 
-function getCategories(todos) {
-    todos.forEach(todo => {
-        let cat = todo.Category;
-        if (todosCategory.includes(cat) == false) {
-            todosCategory.push(cat);
-        }
-    })
+async function getCategories() {
+    let response = await fetch('/category')
+    let data = await response.json()
+
+    return data;
 }
+
+// function getCategories(todos) {
+//     todos.forEach(todo => {
+//         let cat = todo.Category;
+//         if (todosCategory.includes(cat) == false) {
+//             todosCategory.push(cat);
+//         }
+//     })
+// }
 
 //getCategories(todos);
 
@@ -147,7 +154,7 @@ function singleItem(item, todos) {
 } 
 
 function todoItems(list) {
-    console.log(list);
+    // console.log(list);
     list.forEach(function(todo) {
         singleItem(todo, list)
     })
@@ -308,12 +315,25 @@ getTodos().then(todos =>{
     
 })
 
-// fetch('/todo', {
-//     method: 'POST',
-//     body: JSON.stringify({todo: 'new todo'}),
-//     headers: {
-//         'Content-Type': 'application/json'
-//     }
-// })
-//     .then(res => json())
-//     .then(data => console.log(data)) 
+fetch('/todos', {
+    method: 'POST',
+    body: JSON.stringify({ Name: 'new todo' }),
+    headers: {
+        'Content-Type': 'application/json',
+    }
+})
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+    })
+    
+fetch('/category', {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+    }
+})
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+    }) 

@@ -1,8 +1,15 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 app.use(express.static('src'));
 const path = require('path');
 const port = 8000
+
+app.use(express.static('client'))
+app.use( bodyParser.json() )
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
 
 let todos = [
     {
@@ -21,7 +28,7 @@ let todos = [
         Status:"done"
     },
     {   
-        Name:"Delete",
+        Name:"Delete categories",
         Category: "Adding",
         Status:""
     },
