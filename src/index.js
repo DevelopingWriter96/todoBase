@@ -311,7 +311,7 @@ sortcat.addEventListener('click', () => {
 // todoItems(data);
 
 getTodos().then(todos =>{
-    //console.log(todos)
+    console.log(todos)
     todoItems(todos)
     
 })
@@ -336,6 +336,20 @@ function postTodos() {
         })
 }
 
+function sortTodos() {
+    let sortCat = "Editing"
+    fetch(`/sort?Category=${sortCat}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+        })
+}
+
 function postCategory() {
     fetch('/category', {
         method: 'POST',
@@ -350,7 +364,35 @@ function postCategory() {
         })
 }
 
-//function deleteTodo {
+function putTodos() {
+    fetch('/todos', {
+        method: 'PUT',
+        body: JSON.stringify({ Name: 'new todo', index: 1 }),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        })
+}
+
+function putCategory() {
+    fetch('/category', {
+        method: 'PUT',
+        body: JSON.stringify({ Category: 'new cat', index: 1 }),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        })
+}
+
+function deleteTodo() {
     fetch('/todos', {
         method: 'DELETE',
         body: JSON.stringify({ index: 1 }),
@@ -362,9 +404,9 @@ function postCategory() {
         .then(data => {
             console.log(data);
         })
-//}
+}
 
-// function deleteCategory {
+function deleteCategory() {
     fetch('/category', {
         method: 'DELETE',
         body: JSON.stringify({ index: 1 }),
@@ -376,4 +418,5 @@ function postCategory() {
         .then(data => {
             console.log(data);
         })
-// }
+}
+

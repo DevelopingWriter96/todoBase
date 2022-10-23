@@ -67,7 +67,7 @@ app.post('/todos', (req, res) => {
     console.log(req);
     todos.push({
         id: todos.length + 1,
-        Name:req.body.name,
+        Name:req.body.Name,
         Category: "none",
         Status: ""
     })
@@ -75,12 +75,14 @@ app.post('/todos', (req, res) => {
 })
 
 app.put('/todos', (req, res) => {
+    let index = req.body.index
     let editedTodo = {
-         Name: req.query.Name,
+         id: index + 1,
+         Name: req.body.Name,
          Category: "none",
          Status: ""
       }
-    todos.splice(req.query.index, 1, editedTodo);
+    todos.splice(index, 1, editedTodo);
     res.send(todos)
 })
 
@@ -110,8 +112,9 @@ app.post('/category', (req, res) => {
 })
 
 app.put('/category', (req, res) => {
-    let editedCat = req.query.Name
-    todos.splice(req.query.index, 1, editedCat);
+    let index = req.body.index
+    let editedCat = req.body.Category
+    categories.splice(index, 1, editedCat);
     res.send(categories)
 })
 
