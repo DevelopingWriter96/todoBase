@@ -77,6 +77,7 @@ function singleCat(todoCat) {
 }
 
 function categoryDropdown(todosCategory) {
+    drop.innerHTML = innerHTML = null;
     let defaultItem = document.createElement('option');
     defaultItem.textContent = "Choose One";
     drop.appendChild(defaultItem); 
@@ -155,6 +156,7 @@ function singleItem(item, todos) {
 
 function todoItems(list) {
     // console.log(list);
+    todoList.innerHTML = null;
     list.forEach(function(todo) {
         singleItem(todo, list)
     })
@@ -239,17 +241,17 @@ function addItem(arr) {
     console.log(arr);
 }
 
-function addbuttonClick() {
-    addItem(todos);
-}
+// function addbuttonClick() {
+//     addItem(todos);
+// }
 
-add.addEventListener('click', addbuttonClick)
+// add.addEventListener('click', addbuttonClick)
 
-addcat.addEventListener('click', () => {
-    let newCat = prompt('What is the new Category?')
-    todosCategory.push(newCat);
-    singleCat(newCat);
-})
+// addcat.addEventListener('click', () => {
+//     let newCat = prompt('What is the new Category?')
+//     todosCategory.push(newCat);
+//     singleCat(newCat);
+// })
 
 editcat.addEventListener('click', (index) => {
     if (drop.value === "Choose One") {
@@ -290,23 +292,23 @@ deletecat.addEventListener('click', (index) => {
     console.log(todos);
 })
 
-sortcat.addEventListener('click', () => {
-    let sortedArray = [];
-    if (drop.value === "Choose One") {
-        alert("Please choose a category")
-        return;
-    }  else {
-    todos.forEach(todo => {
-        if (todo.Category === drop.value){
-            sortedArray.push(todo);
-        }
-    })
-    console.log(sortedArray);
-    todoList.innerHTML =
-        null;
-    todoItems(sortedArray);
-}
-})
+// sortcat.addEventListener('click', () => {
+//     let sortedArray = [];
+//     if (drop.value === "Choose One") {
+//         alert("Please choose a category")
+//         return;
+//     }  else {
+//     todos.forEach(todo => {
+//         if (todo.Category === drop.value){
+//             sortedArray.push(todo);
+//         }
+//     })
+//     console.log(sortedArray);
+//     todoList.innerHTML =
+//         null;
+//     todoItems(sortedArray);
+// }
+// })
 
 // todoItems(data);
 
@@ -322,22 +324,34 @@ getCategories().then(categories =>{
     
 })
 
-function postTodos() {
+add.addEventListener('click', () => {
+    let input = document.getElementById('newTodo').value;
+    let cat = drop.value
+    if (cat === "Choose One") {
+        alert("Please choose a category")
+        return;
+    } else {
     fetch('/todos', {
         method: 'POST',
-        body: JSON.stringify({ name: 'new todo' }),
+        body: JSON.stringify({ Name: input,  Category: cat}),
         headers: {
             'Content-Type': 'application/json',
         }
     })
         .then(res => res.json())
         .then(data => {
+            todoItems(data)
             console.log(data)
         })
-}
+    }
+})
 
-function sortTodos() {
-    let sortCat = "Editing"
+sortcat.addEventListener('click', () => {
+    let sortCat = drop.value;
+    if (sortCat === "Choose One") {
+        alert("Please choose a category")
+        return;
+    }  else {
     fetch(`/sort?Category=${sortCat}`, {
         method: 'GET',
         headers: {
@@ -346,14 +360,17 @@ function sortTodos() {
     })
         .then(res => res.json())
         .then(data => {
+            todoItems(data)
             console.log(data)
         })
-}
+    }
+})
 
-function postCategory() {
+addcat.addEventListener('click', () => {
+    let newCat = prompt('What is the new Category?')
     fetch('/category', {
         method: 'POST',
-        body: JSON.stringify({ Category: 'new cat' }),
+        body: JSON.stringify({ Category: newCat }),
         headers: {
             'Content-Type': 'application/json',
         }
@@ -361,8 +378,9 @@ function postCategory() {
         .then(res => res.json())
         .then(data => {
             console.log(data);
+            categoryDropdown(data);
         })
-}
+})
 
 function putTodos() {
     fetch('/todos', {
@@ -419,4 +437,3 @@ function deleteCategory() {
             console.log(data);
         })
 }
-

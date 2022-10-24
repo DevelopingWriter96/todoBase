@@ -68,7 +68,7 @@ app.post('/todos', (req, res) => {
     todos.push({
         id: todos.length + 1,
         Name:req.body.Name,
-        Category: "none",
+        Category: req.body.Category,
         Status: ""
     })
     res.send(todos)
@@ -79,7 +79,7 @@ app.put('/todos', (req, res) => {
     let editedTodo = {
          id: index + 1,
          Name: req.body.Name,
-         Category: "none",
+         Category: 'none',
          Status: ""
       }
     todos.splice(index, 1, editedTodo);
