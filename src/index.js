@@ -119,6 +119,7 @@ function singleItem(item, todos) {
             })
                 .then(res => res.json())
                 .then(data => {
+                    console.log(id)
                     console.log(data);
                     todoItems(data)
                 })
@@ -213,6 +214,7 @@ function addItem(arr) {
             })
                 .then(res => res.json())
                 .then(data => {
+                    console.log(id)
                     console.log(data);
                     todoItems(data)
                 })
