@@ -108,21 +108,31 @@ function singleItem(item, todos) {
         listItem.className = item.Status;
         listTrashIcon.className = "fa fa-trash"
         listTrashSpan.appendChild(listTrashIcon);  
-        listTrashSpan.addEventListener('click', (index) => {
-            todoList.removeChild(listItem)
-            console.log(todos);
-            todos.splice(index, 1);
-            completeNumber(todos);
+        listTrashSpan.addEventListener('click', () => {
+            let id = item.id 
+            fetch('/todos', {
+                method: 'DELETE',
+                body: JSON.stringify({ index: id }),
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    todoItems(data)
+                })
         })      
             let listEditSpan = document.createElement('span');
             listEditSpan.className = "editBtn"
             let listEditIcon = document.createElement('i');
             listEditIcon.className = "fa fa-edit"
-            listEditSpan.addEventListener('click', (index) => {
+            listEditSpan.addEventListener('click', () => {
                 let editInput = prompt('What is the new name?')
+                let id = item.id  
                 fetch('/todos', {
                     method: 'PUT',
-                    body: JSON.stringify({ Name: editInput, index: index }),
+                    body: JSON.stringify({ Name: editInput, index: id }),
                     headers: {
                         'Content-Type': 'application/json',
                     }
@@ -192,20 +202,31 @@ function addItem(arr) {
         listItem.className = newItem.Status;
         listTrashIcon.className = "fa fa-trash"
         listTrashSpan.appendChild(listTrashIcon);  
-        listTrashSpan.addEventListener('click', (index) => {
-            todoList.removeChild(listItem)
-            console.log(todos);
-            todos.splice(index, 1);
+        listTrashSpan.addEventListener('click', () => {
+            let id = item.id 
+            fetch('/todos', {
+                method: 'DELETE',
+                body: JSON.stringify({ index: id }),
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    todoItems(data)
+                })
         })      
             let listEditSpan = document.createElement('span');
             listEditSpan.className = "editBtn"
             let listEditIcon = document.createElement('i');
             listEditIcon.className = "fa fa-edit"
-            listEditSpan.addEventListener('click', (index) => {
+            listEditSpan.addEventListener('click', () => {
                 let editInput = prompt('What is the new name?')
+                let id = item.id 
                 fetch('/todos', {
                     method: 'PUT',
-                    body: JSON.stringify({ Name: editInput, index: index }),
+                    body: JSON.stringify({ Name: editInput, index: id }),
                     headers: {
                         'Content-Type': 'application/json',
                     }
@@ -392,16 +413,3 @@ addcat.addEventListener('click', () => {
         })
 })
 
-function deleteCategory() {
-    fetch('/category', {
-        method: 'DELETE',
-        body: JSON.stringify({ index: 1 }),
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-        })
-}

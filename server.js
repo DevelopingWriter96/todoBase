@@ -75,7 +75,7 @@ app.post('/todos', (req, res) => {
 })
 
 app.put('/todos', (req, res) => {
-    let index = req.body.index
+    let index = req.body.id - 1
     let editedTodo = {
          id: index + 1,
          Name: req.body.Name,
@@ -87,7 +87,8 @@ app.put('/todos', (req, res) => {
 })
 
 app.delete('/todos', (req, res) =>{
-    todos.splice(req.body.index, 1);
+    let index = req.body.id - 1
+    todos.splice(index, 1);
     res.send(todos)
 })
 
