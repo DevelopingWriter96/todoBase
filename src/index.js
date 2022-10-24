@@ -120,16 +120,18 @@ function singleItem(item, todos) {
             listEditIcon.className = "fa fa-edit"
             listEditSpan.addEventListener('click', (index) => {
                 let editInput = prompt('What is the new name?')
-                let editedTodo = {
-                    Name: editInput,
-                    Status: ""
-                 }
-                todoList.removeChild(listItem)
-                console.log(todos);
-                todos.splice(index, 1);
-                todos.push(editedTodo);
-                singleItem(editedTodo, todos);
-                completeNumber(todos)
+                fetch('/todos', {
+                    method: 'PUT',
+                    body: JSON.stringify({ Name: editInput, index: index }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        todoItems(data)
+                    })
             });
             listEditSpan.appendChild(listEditIcon);
             listItem.appendChild(listEditSpan);
@@ -201,16 +203,18 @@ function addItem(arr) {
             listEditIcon.className = "fa fa-edit"
             listEditSpan.addEventListener('click', (index) => {
                 let editInput = prompt('What is the new name?')
-                let editedTodo = {
-                    Name: editInput,
-                    Status: ""
-                 }
-                todoList.removeChild(listItem)
-                console.log(todos);
-                todos.splice(index, 1);
-                todos.push(editedTodo);
-                singleItem(editedTodo, todos);
-                completeNumber(todos)
+                fetch('/todos', {
+                    method: 'PUT',
+                    body: JSON.stringify({ Name: editInput, index: index }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        todoItems(data)
+                    })
             });
             listEditSpan.appendChild(listEditIcon);
             listItem.appendChild(listEditSpan);
@@ -253,43 +257,49 @@ function addItem(arr) {
 //     singleCat(newCat);
 // })
 
-editcat.addEventListener('click', (index) => {
+editcat.addEventListener('click', () => {
+    let value = drop.value
+    let index = drop.selectedIndex - 1;
     if (drop.value === "Choose One") {
         alert("Please choose a category")
         return;
     }  else {
         let editedCat = prompt('What will the new Category be?')
-        todos.forEach(todo => {
-           if (todo.Category === drop.value){
-                todo.Category = editedCat;
-                console.log(todosCategory);
-                todosCategory[todosCategory.indexOf(drop.value)] = editedCat; 
+        fetch('/category', {
+            method: 'PUT',
+            body: JSON.stringify({ Value: value, Category: editedCat, index: index }),
+            headers: {
+                'Content-Type': 'application/json',
             }
         })
-        drop.innerHTML =
-            null;
-        categoryDropdown(todosCategory); 
+            .then(res => res.json())
+            .then(data => {
+                categoryDropdown(data);
+                console.log(data);
+            }) 
     }
-    console.log(todos);
 })
 
-deletecat.addEventListener('click', (index) => {
+deletecat.addEventListener('click', () => {
+    let value = drop.value
+    let index = drop.selectedIndex - 1;
     if (drop.value === "Choose One") {
         alert("Please choose a category")
         return;
     }  else {
-        console.log(drop.value);
-        todos.forEach(todo => {
-           if (todo.Category === drop.value) {  
-                todo.Category = "";
-           }
+        fetch('/category', {
+            method: 'DELETE',
+            body: JSON.stringify({ Value: value, index: index }),
+            headers: {
+                'Content-Type': 'application/json',
+            }
         })
-        todosCategory.splice(todosCategory.indexOf(drop.value), 1)
-    }
-    drop.innerHTML =
-        null;
-    categoryDropdown(todosCategory);
-    console.log(todos);
+            .then(res => res.json())
+            .then(data => {
+                categoryDropdown(data);
+                console.log(data);
+            }) 
+        }
 })
 
 // sortcat.addEventListener('click', () => {
@@ -381,48 +391,6 @@ addcat.addEventListener('click', () => {
             categoryDropdown(data);
         })
 })
-
-function putTodos() {
-    fetch('/todos', {
-        method: 'PUT',
-        body: JSON.stringify({ Name: 'new todo', index: 1 }),
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-        })
-}
-
-function putCategory() {
-    fetch('/category', {
-        method: 'PUT',
-        body: JSON.stringify({ Category: 'new cat', index: 1 }),
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-        })
-}
-
-function deleteTodo() {
-    fetch('/todos', {
-        method: 'DELETE',
-        body: JSON.stringify({ index: 1 }),
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-        })
-}
 
 function deleteCategory() {
     fetch('/category', {

@@ -114,12 +114,23 @@ app.post('/category', (req, res) => {
 app.put('/category', (req, res) => {
     let index = req.body.index
     let editedCat = req.body.Category
+    todos.forEach(todo => {
+        if (todo.Category === req.body.Value) {  
+             todo.Category = req.body.Category;
+        }
+     })
     categories.splice(index, 1, editedCat);
     res.send(categories)
 })
 
 app.delete('/category', (req, res) => {
-    categories.splice(req.body.index, 1);
+    let index = req.body.index
+    todos.forEach(todo => {
+        if (todo.Category === req.body.Value) {  
+             todo.Category = "";
+        }
+     })
+    categories.splice(index, 1);
     res.send(categories)
 })
 
