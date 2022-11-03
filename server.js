@@ -1,140 +1,156 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const app = express()
-app.use(express.static('src'));
-const path = require('path');
-const port = 8000
+const mongoose = require('mongoose');
+const uri = "mongodb+srv://staceyRichard1996:yx5Dwuhug79cAfwf@cluster0.qovsreu.mongodb.net/?retryWrites=true&w=majority";
 
-app.use(express.static('client'))
-app.use( bodyParser.json() );       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
-})); 
+mongoose.connect(
+  uri,
+  {
+    useNewUrlParser: true
+  }
+)
+.then(e => console.log('MongoDB Ready!'))
+.catch(console.error)
 
-let todos = [
-    {   
-        id: 1,
-        Name:"View todos by category",
-        Category: "Deleting",
-        Status:"done"
-    },
-    {   
-        id: 2,
-        Name:"Add categories",
-        Category: "Random",
-        Status:"done"
-    },
-    {   
-        id: 3,
-        Name:"Select a category",
-        Category: "Editing",
-        Status:"done"
-    },
-    {   
-        id: 4,
-        Name:"Delete categories",
-        Category: "Adding",
-        Status:""
-    },
-    {   
-        id: 5,
-        Name:"Edit categories",
-        Category: "Editing",
-        Status:""
-    },
-    {   
-        id: 6,
-        Name:"Good user experience",
-        Category: "Deleting",
-        Status:"done"
-    },
-]
+// require('./createUser')
+require('./query')
+// require('./update')
 
-let categories = []
+// const express = require('express')
+// const bodyParser = require('body-parser')
+// const app = express()
+// app.use(express.static('src'));
+// const path = require('path');
+// const port = 8000
 
-todos.forEach(todo => {
-    let cat = todo.Category;
-    if (categories.includes(cat) == false) {
-        categories.push(cat);
-    }
-})
+// app.use(express.static('client'))
+// app.use( bodyParser.json() );       // to support JSON-encoded bodies
+// app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+//   extended: true
+// })); 
 
-app.get('/todos', (req, res) => {
-    res.send(todos)
-})
+// let todos = [
+//     {   
+//         id: 1,
+//         Name:"View todos by category",
+//         Category: "Deleting",
+//         Status:"done"
+//     },
+//     {   
+//         id: 2,
+//         Name:"Add categories",
+//         Category: "Random",
+//         Status:"done"
+//     },
+//     {   
+//         id: 3,
+//         Name:"Select a category",
+//         Category: "Editing",
+//         Status:"done"
+//     },
+//     {   
+//         id: 4,
+//         Name:"Delete categories",
+//         Category: "Adding",
+//         Status:""
+//     },
+//     {   
+//         id: 5,
+//         Name:"Edit categories",
+//         Category: "Editing",
+//         Status:""
+//     },
+//     {   
+//         id: 6,
+//         Name:"Good user experience",
+//         Category: "Deleting",
+//         Status:"done"
+//     },
+// ]
 
-app.post('/todos', (req, res) => {
-    console.log(req);
-    todos.push({
-        id: todos.length + 1,
-        Name:req.body.Name,
-        Category: req.body.Category,
-        Status: ""
-    })
-    res.send(todos)
-})
+// let categories = []
 
-app.put('/todos', (req, res) => {
-    let index = req.body.index - 1
-    let editedTodo = {
-         id: index + 1,
-         Name: req.body.Name,
-         Category: 'none',
-         Status: ""
-      }
-    todos.splice(index, 1, editedTodo);
-    res.send(todos)
-})
+// todos.forEach(todo => {
+//     let cat = todo.Category;
+//     if (categories.includes(cat) == false) {
+//         categories.push(cat);
+//     }
+// })
 
-app.delete('/todos', (req, res) =>{
-    let index = req.body.index - 1
-    todos.splice(index, 1);
-    res.send(todos)
-})
+// app.get('/todos', (req, res) => {
+//     res.send(todos)
+// })
 
-app.get('/sort', (req, res) => {
-    let sortedArray = [];
-    todos.forEach(todo => {
-        if (todo.Category === req.query.Category){
-            sortedArray.push(todo);
-        }
-    })
-    res.send(sortedArray)
-})
+// app.post('/todos', (req, res) => {
+//     console.log(req);
+//     todos.push({
+//         id: todos.length + 1,
+//         Name:req.body.Name,
+//         Category: req.body.Category,
+//         Status: ""
+//     })
+//     res.send(todos)
+// })
 
-app.get('/category', (req, res) => {
-    res.send(categories)
-})
+// app.put('/todos', (req, res) => {
+//     let index = req.body.index - 1
+//     let editedTodo = {
+//          id: index + 1,
+//          Name: req.body.Name,
+//          Category: 'none',
+//          Status: ""
+//       }
+//     todos.splice(index, 1, editedTodo);
+//     res.send(todos)
+// })
 
-app.post('/category', (req, res) => {
-    console.log(req)
-    categories.push(req.body.Category)
-    res.send(categories)
-})
+// app.delete('/todos', (req, res) =>{
+//     let index = req.body.index - 1
+//     todos.splice(index, 1);
+//     res.send(todos)
+// })
 
-app.put('/category', (req, res) => {
-    let index = req.body.index
-    let editedCat = req.body.Category
-    todos.forEach(todo => {
-        if (todo.Category === req.body.Value) {  
-             todo.Category = req.body.Category;
-        }
-     })
-    categories.splice(index, 1, editedCat);
-    res.send(categories)
-})
+// app.get('/sort', (req, res) => {
+//     let sortedArray = [];
+//     todos.forEach(todo => {
+//         if (todo.Category === req.query.Category){
+//             sortedArray.push(todo);
+//         }
+//     })
+//     res.send(sortedArray)
+// })
 
-app.delete('/category', (req, res) => {
-    let index = req.body.index
-    todos.forEach(todo => {
-        if (todo.Category === req.body.Value) {  
-             todo.Category = "";
-        }
-     })
-    categories.splice(index, 1);
-    res.send(categories)
-})
+// app.get('/category', (req, res) => {
+//     res.send(categories)
+// })
 
-app.listen(port, () => {
-    console.log(`Example App running on ${port}`)
-})
+// app.post('/category', (req, res) => {
+//     console.log(req)
+//     categories.push(req.body.Category)
+//     res.send(categories)
+// })
+
+// app.put('/category', (req, res) => {
+//     let index = req.body.index
+//     let editedCat = req.body.Category
+//     todos.forEach(todo => {
+//         if (todo.Category === req.body.Value) {  
+//              todo.Category = req.body.Category;
+//         }
+//      })
+//     categories.splice(index, 1, editedCat);
+//     res.send(categories)
+// })
+
+// app.delete('/category', (req, res) => {
+//     let index = req.body.index
+//     todos.forEach(todo => {
+//         if (todo.Category === req.body.Value) {  
+//              todo.Category = "";
+//         }
+//      })
+//     categories.splice(index, 1);
+//     res.send(categories)
+// })
+
+// app.listen(port, () => {
+//     console.log(`Example App running on ${port}`)
+// })
