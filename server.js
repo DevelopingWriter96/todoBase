@@ -10,9 +10,10 @@ mongoose.connect(
 .then(e => console.log('MongoDB Ready!'))
 .catch(console.error)
 
-// require('./createUser')
-require('./query')
+require('./createTodo')
+// require('./query')
 // require('./update')
+// require('./delete')
 
 // const express = require('express')
 // const bodyParser = require('body-parser')
