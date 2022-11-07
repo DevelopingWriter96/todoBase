@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://staceyRichard1996:yx5Dwuhug79cAfwf@cluster0.qovsreu.mongodb.net/?retryWrites=true&w=majority";
+require('dotenv').config();
+const uri = process.env.MONGOURI
 
 mongoose.connect(
   uri,
@@ -10,7 +11,7 @@ mongoose.connect(
 .then(e => console.log('MongoDB Ready!'))
 .catch(console.error)
 
-require('./createTodo')
+// require('./createTodo')
 // require('./query')
 // require('./update')
 // require('./delete')
