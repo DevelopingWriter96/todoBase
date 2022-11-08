@@ -5,10 +5,10 @@ const incrementAge = async (firstName) => {
     const user = await User.findOne({firstName})
 
     if(!user) {
-        throw new Error('User Not Found!')
+        throw new Error('Todo Not Found!')
     }
 
-    user.age++
+    user.id++
 
     // console.log(user)
 
@@ -18,4 +18,4 @@ const incrementAge = async (firstName) => {
 
 }
 
-incrementAge("Richard")
+incrementAge("Delete Categories")
