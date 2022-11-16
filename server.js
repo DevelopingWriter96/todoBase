@@ -11,23 +11,39 @@ mongoose.connect(
 .then(e => console.log('MongoDB Ready!'))
 .catch(console.error)
 
+const User = require('./user')
+
+const findAllUsers = async () => {
+    const allUsers = await User.find()
+
+    console.log(allUsers)
+}
+
+findAllUsers()
+
+const findUserByName = async (Name) => {
+    return User.find({ Name })
+}
+
+findUserByName("Add Categories")
+
 // require('./createTodo')
 // require('./query')
 // require('./update')
 // require('./delete')
 
-// const express = require('express')
-// const bodyParser = require('body-parser')
-// const app = express()
-// app.use(express.static('src'));
-// const path = require('path');
-// const port = 8000
+const express = require('express')
+const bodyParser = require('body-parser')
+const app = express()
+app.use(express.static('src'));
+const path = require('path');
+const port = 8000
 
-// app.use(express.static('client'))
-// app.use( bodyParser.json() );       // to support JSON-encoded bodies
-// app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-//   extended: true
-// })); 
+app.use(express.static('client'))
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
 
 // let todos = [
 //     {   
@@ -77,9 +93,12 @@ mongoose.connect(
 //     }
 // })
 
-// app.get('/todos', (req, res) => {
-//     res.send(todos)
-// })
+app.get('/todos', async (req, res) => {
+
+  const todos = await findAllUsers()
+
+    res.send(todos)
+})
 
 // app.post('/todos', (req, res) => {
 //     console.log(req);

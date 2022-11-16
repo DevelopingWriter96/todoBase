@@ -2,7 +2,7 @@ const User = require('./user')
 
 const newUser = new User({
     id: 4,
-    Name:"Delete categories",
+    Name:"Add Categories",
     Category: "Adding",
     Status:""
 })

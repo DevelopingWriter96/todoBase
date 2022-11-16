@@ -8,10 +8,10 @@ const findAllUsers = async () => {
 
 findAllUsers()
 
-const findUserByName = async (firstName) => {
-    const users = User.find({ firstName })
+const findUserByName = async (Name) => {
+    const users = User.find({ Name })
 
     console.log(users)
 }
 
-findUserByName("Richard")
+findUserByName("Add Categories")
