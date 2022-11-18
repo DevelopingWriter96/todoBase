@@ -1,9 +1,11 @@
 const User = require('./user')
 
+let newTodo = prompt("What is the new Todo?")
+
 const newUser = new User({
-    id: 4,
-    Name:"Add Categories",
-    Category: "Adding",
+    id: allUsers.length++,
+    Name: newTodo,
+    Category: "None",
     Status:""
 })
 

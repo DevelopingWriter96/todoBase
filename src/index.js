@@ -57,16 +57,16 @@ async function getCategories() {
     return data;
 }
 
-// function getCategories(todos) {
-//     todos.forEach(todo => {
-//         let cat = todo.Category;
-//         if (todosCategory.includes(cat) == false) {
-//             todosCategory.push(cat);
-//         }
-//     })
-// }
+function getCategories(todos) {
+    todos.forEach(todo => {
+        let cat = todo.Category;
+        if (todosCategory.includes(cat) == false) {
+            todosCategory.push(cat);
+        }
+    })
+}
 
-//getCategories(todos);
+// getCategories(todos);
 
 function singleCat(todoCat) {
     let listCategory = document.createElement('option');
@@ -87,7 +87,7 @@ function categoryDropdown(todosCategory) {
     })
 }
 
-//categoryDropdown(todosCategory);
+categoryDropdown(todosCategory);
 
 function completeNumber(list) {
     const doneNum = document.querySelector('.doneNum')
@@ -268,17 +268,17 @@ function addItem(arr) {
     console.log(arr);
 }
 
-// function addbuttonClick() {
-//     addItem(todos);
-// }
+function addbuttonClick() {
+    addItem(todos);
+}
 
-// add.addEventListener('click', addbuttonClick)
+add.addEventListener('click', addbuttonClick)
 
-// addcat.addEventListener('click', () => {
-//     let newCat = prompt('What is the new Category?')
-//     todosCategory.push(newCat);
-//     singleCat(newCat);
-// })
+addcat.addEventListener('click', () => {
+    let newCat = prompt('What is the new Category?')
+    todosCategory.push(newCat);
+    singleCat(newCat);
+})
 
 editcat.addEventListener('click', () => {
     let value = drop.value
@@ -325,25 +325,25 @@ deletecat.addEventListener('click', () => {
         }
 })
 
-// sortcat.addEventListener('click', () => {
-//     let sortedArray = [];
-//     if (drop.value === "Choose One") {
-//         alert("Please choose a category")
-//         return;
-//     }  else {
-//     todos.forEach(todo => {
-//         if (todo.Category === drop.value){
-//             sortedArray.push(todo);
-//         }
-//     })
-//     console.log(sortedArray);
-//     todoList.innerHTML =
-//         null;
-//     todoItems(sortedArray);
-// }
-// })
+sortcat.addEventListener('click', () => {
+    let sortedArray = [];
+    if (drop.value === "Choose One") {
+        alert("Please choose a category")
+        return;
+    }  else {
+    todos.forEach(todo => {
+        if (todo.Category === drop.value){
+            sortedArray.push(todo);
+        }
+    })
+    console.log(sortedArray);
+    todoList.innerHTML =
+        null;
+    todoItems(sortedArray);
+}
+})
 
-// todoItems(data);
+todoItems(data);
 
 getTodos().then(todos =>{
     console.log(todos)

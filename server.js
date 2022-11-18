@@ -17,15 +17,22 @@ const findAllUsers = async () => {
     const allUsers = await User.find()
 
     console.log(allUsers)
+
+    // allUsers.forEach(todo => {
+    //   let cat = todo.Category;
+    //   if (categories.includes(cat) == false) {
+    //       categories.push(cat);
+    //   }
+    // })
 }
 
 findAllUsers()
 
-const findUserByName = async (Name) => {
-    return User.find({ Name })
-}
+// const findUserByName = async (Name) => {
+//     return User.find({ Name })
+// }
 
-findUserByName("Add Categories")
+// findUserByName("Add Categories")
 
 // require('./createTodo')
 // require('./query')
@@ -45,59 +52,53 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
 
-// let todos = [
-//     {   
-//         id: 1,
-//         Name:"View todos by category",
-//         Category: "Deleting",
-//         Status:"done"
-//     },
-//     {   
-//         id: 2,
-//         Name:"Add categories",
-//         Category: "Random",
-//         Status:"done"
-//     },
-//     {   
-//         id: 3,
-//         Name:"Select a category",
-//         Category: "Editing",
-//         Status:"done"
-//     },
-//     {   
-//         id: 4,
-//         Name:"Delete categories",
-//         Category: "Adding",
-//         Status:""
-//     },
-//     {   
-//         id: 5,
-//         Name:"Edit categories",
-//         Category: "Editing",
-//         Status:""
-//     },
-//     {   
-//         id: 6,
-//         Name:"Good user experience",
-//         Category: "Deleting",
-//         Status:"done"
-//     },
-// ]
+let todos = [
+    {   
+        id: 1,
+        Name:"View todos by category",
+        Category: "Deleting",
+        Status:"done"
+    },
+    {   
+        id: 2,
+        Name:"Add categories",
+        Category: "Random",
+        Status:"done"
+    },
+    {   
+        id: 3,
+        Name:"Select a category",
+        Category: "Editing",
+        Status:"done"
+    },
+    {   
+        id: 4,
+        Name:"Delete categories",
+        Category: "Adding",
+        Status:""
+    },
+    {   
+        id: 5,
+        Name:"Edit categories",
+        Category: "Editing",
+        Status:""
+    },
+    {   
+        id: 6,
+        Name:"Good user experience",
+        Category: "Deleting",
+        Status:"done"
+    },
+]
 
-// let categories = []
-
-// todos.forEach(todo => {
-//     let cat = todo.Category;
-//     if (categories.includes(cat) == false) {
-//         categories.push(cat);
-//     }
-// })
+let categories = []
 
 app.get('/todos', async (req, res) => {
 
   const todos = await findAllUsers()
 
-    res.send(todos)
+  res.send(todos)
+
 })
 
 // app.post('/todos', (req, res) => {
@@ -172,6 +173,6 @@ app.get('/todos', async (req, res) => {
 //     res.send(categories)
 // })
 
-// app.listen(port, () => {
-//     console.log(`Example App running on ${port}`)
-// })
+app.listen(port, () => {
+    console.log(`Example App running on ${port}`)
+})

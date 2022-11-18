@@ -1,11 +1,11 @@
 const User = require('./user')
 
-const deleteByFirstName = async (firstName) => {
-    await User.deleteOne({firstName})
+const deleteByFirstName = async (Name) => {
+    await User.deleteOne({ Name })
 
-    const allUsers = User.find()
+    const allUsers = await User.find()
 
     console.log(allUsers)
 }
 
-deleteByFirstName('Richard')
+deleteByFirstName("Delete categories")
